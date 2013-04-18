@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>Persona Troubleshooting</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://login.persona.org/include.js"></script>
+</head>
+<body>
+<h1>Persona Troubleshooting</h1>
+
+<table border="1">
+<tr>
+<td>JavaScript:</td><td><noscript>Disabled</noscript><script>document.write("Enabled")</script></td>
+</tr>
+<tr>
+<td>Browser version:</td><td><script>document.write(navigator.userAgent)</script></td>
+</tr>
+<tr>
+<td>Can load include.js:</td><td><script>if (navigator.id) { document.write("Yes"); } else { document.write("No") }</script></td>
+</tr>
+</table>
+
+</body>
