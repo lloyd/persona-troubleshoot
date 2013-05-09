@@ -2,7 +2,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <title>Persona Troubleshooting</title>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://login.persona.org/include.js"></script>
 </head>
 <body>
@@ -22,8 +22,41 @@
 <td>Supports localStorage:</td><td><script>if (window.localStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
+<td>Supports sessionStorage:</td><td><script>if (window.sessionStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
+</tr>
+<tr>
 <td>Supports postMessage:</td><td><script>if (window.postMessage) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
+<tr>
+<td>Supports XHRs</td><td id="xhr-worked">No</td>
+</tr>
+<tr>
+<td>Persona <tt>onlogout</tt> called</td><td id="onlogout-called">No</td>
+</tr>
+<tr>
+<td>Persona <tt>onready</tt> called</td><td id="onready-called">No</td>
+</tr>
 </table>
+
+<script>
+$.ajax('troubleshoot-xhr.json', {
+  success: function (data, textStatus) {
+    if ('success' == textStatus && 'totally' == data.working) {
+      $('#xhr-worked').text('Yes');
+    }
+  }
+});
+
+navigator.id.watch({
+  loggedInUser: 'invalid',
+  onlogin: function (assertion) {},
+  onlogout: function () {
+    $('#onlogout-called').text('Yes');
+  },
+  onready: function () {
+    $('#onready-called').text('Yes');
+  }
+});
+</script>
 
 </body>
