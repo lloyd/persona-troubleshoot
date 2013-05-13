@@ -16,16 +16,22 @@
 <td>Browser version:</td><td><script>document.write(navigator.userAgent)</script></td>
 </tr>
 <tr>
+<td>IE version:</td><td id="ieversion">N/A</td>
+</tr>
+<tr>
 <td>Can load include.js:</td><td><script>if (navigator.id) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
-<td>Supports localStorage:</td><td><script>if (window.localStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
+<td>Defines localStorage:</td><td><script>if (window.localStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
-<td>Supports sessionStorage:</td><td><script>if (window.sessionStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
+<td>Defines sessionStorage:</td><td><script>if (window.sessionStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
-<td>Supports postMessage:</td><td><script>if (window.postMessage) { document.write("Yes"); } else { document.write("No") }</script></td>
+<td>Defines postMessage:</td><td><script>if (window.postMessage) { document.write("Yes"); } else { document.write("No") }</script></td>
+</tr>
+<tr>
+<td>Defines XMLHttpRequest</td><td><script>if (window.XMLHttpRequest) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
 <td>Supports XHRs</td><td id="xhr-worked">No</td>
@@ -36,6 +42,12 @@
 <tr>
 <td>Persona <tt>onready</tt> called</td><td id="onready-called">No</td>
 </tr>
+<!--<tr>
+<td>Set a cookie, then check that browser sends it</td><td>TODO</td>
+</tr>
+<tr>
+<td>Set a third-party cookie, then check that browser sends it</td><td>TODO</td>
+</tr>-->
 </table>
 
 <script>
@@ -57,6 +69,16 @@ navigator.id.watch({
     $('#onready-called').text('Yes');
   }
 });
+
+if (navigator.appName === 'Microsoft Internet Explorer') {
+  var rv = -1;
+  var ua = navigator.userAgent;
+  var re = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
+  if (re.exec(ua) != null) {
+    rv = parseFloat(RegExp.$1);
+  }
+  $('#ieversion').text(rv);
+}
 </script>
 
 </body>
