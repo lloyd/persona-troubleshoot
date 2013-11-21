@@ -22,7 +22,7 @@
 <td>Can load include.js:</td><td><script>if (navigator.id) { document.write("Yes"); } else { document.write("No") }</script></td>
 </tr>
 <tr>
-<td>Defines localStorage:</td><td><script>if (window.localStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
+<td>Defines localStorage:</td><td><script>try {if (window.localStorage) { document.write("Yes"); } else { document.write("No") }} catch (e) {document.write("No (error)");}</script></td>
 </tr>
 <tr>
 <td>Defines sessionStorage:</td><td><script>if (window.sessionStorage) { document.write("Yes"); } else { document.write("No") }</script></td>
